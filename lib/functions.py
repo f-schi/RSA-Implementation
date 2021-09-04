@@ -2,10 +2,17 @@
 
 
 
-def modularInverse():
-    # returns the modular inverse of values (a,b)
-    pass
+def modularInverse(a,m):
+    # returns the modular inverse a^(-1) mod m
+   gcd, s, t = extendedEuclideanAlgorithm(a,m)
+   return t
 
+
+
+def ea():
+    # performs euclidean algorithm
+    # returns greatest common denominator
+    pass
 
 def extendedEuclideanAlgorithm(a, b):
     # performs extended euclidean algorithm
