@@ -4,12 +4,12 @@ def encrypt():
     # Encrypts a message
 
     print("\n...")
-    # Load Public Key from 'publickey.json'
-    f = open('./resources/publickey.json',)
-    pubkey = json.load(f)
+    # Load Public Key from 'keys.json'
+    f = open('./resources/keys.json',)
+    keys = json.load(f)
     f.close()
-    n = pubkey["n"]
-    e = pubkey["e"]
+    n = keys["public"]["n"]
+    e = keys["public"]["e"]
     if n and e:
         print("Public Key successfully loaded!")
     else:
@@ -28,7 +28,8 @@ def encrypt():
     # Perform RSA Encryption
     cipher = ""
     for character in plaintext:
-        cipher += str(pow(ord(character), e, n)) + " "
+        x = ord(character) #tranform letter to unicode
+        cipher += str(pow(x, e, n)) + " "
     if cipher:
         print("Cipher successfully generated!")
     else:
@@ -42,8 +43,3 @@ def encrypt():
     else:
         print("Error: Cipher could not be save")
     print("...")
-
-    print("\nPlaintext:")
-    print(plaintext)
-    print("\nCipher:")
-    print(cipher)

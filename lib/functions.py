@@ -2,17 +2,32 @@
 
 
 
+def checkCoPrime():
+    pass
+
+
 def modularInverse(a,m):
     # returns the modular inverse a^(-1) mod m
    gcd, s, t = extendedEuclideanAlgorithm(a,m)
    return t
 
 
-
-def ea():
+def euclideanAlgorithm(a,b):
     # performs euclidean algorithm
     # returns greatest common denominator
-    pass
+    
+    #init
+    r = [a,b]
+    i = 1
+
+    #algorithm
+    while r[i] != 0:
+        i = i + 1
+        r.append(r[i-2] % r[i-1])
+
+    #output
+    gcd = r[i-1]
+    return gcd
 
 def extendedEuclideanAlgorithm(a, b):
     # performs extended euclidean algorithm
@@ -38,6 +53,4 @@ def extendedEuclideanAlgorithm(a, b):
     s = int(s[i-1])
     t = int(t[i-1])
     return(gcd, s, t)
-
-
 

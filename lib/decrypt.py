@@ -4,17 +4,13 @@ def decrypt():
     # Decrypts a message
 
     print("\n...")
-    # Load Public Key and Private Key from 'publickey.json' and 'privatekey.json'
-    f = open('./resources/publickey.json',)
-    pubkey = json.load(f)
-    f.close()
-    n = pubkey["n"]
-    f = open('./resources/privatekey.json',)
-    privkey = json.load(f)
-    f.close()
-    n = pubkey["n"]
-    d = privkey["d"]
 
+    # Load Public Key and Private Key from 'keys.json'
+    file = open('./resources/keys.json',)
+    keys = json.load(file)
+    file.close()
+    n = keys["public"]["n"]
+    d = keys["private"]["d"]
     if n and d:
         print("Private Key successfully loaded!")
     else:
@@ -22,8 +18,8 @@ def decrypt():
 
 
     # Load cipher from 'cipher.txt'
-    with open('./resources/cipher.txt') as f:
-        cipher = f.read()
+    with open('./resources/cipher.txt') as file:
+        cipher = file.read()
     if cipher:
         print("Cipher successfully loaded!")
     else:
@@ -34,7 +30,8 @@ def decrypt():
     plaintext = ""
     ciphersplit = cipher.split()
     for character in ciphersplit:
-        plaintext += chr(pow(int(character), d, n))
+        x = int(character) #transform unicode to letter
+        plaintext += chr(pow(x, d, n))
     if plaintext:
         print("Message successfully generated!")
     else:
@@ -42,14 +39,12 @@ def decrypt():
 
 
     # Save encrypted text in cipher.txt
-    with open('./resources/message.txt', 'w') as f:
-        f.write(plaintext)
+    with open('./resources/message.txt', 'w') as file:
+        file.write(plaintext)
     if plaintext:
         print("Message successfully saved!")
     else:
         print("Error: Message could not be saved")
+        
     print("...")
-    print("\nCipher:")
-    print(cipher)
-    print("\nPlaintext:")
-    print(plaintext)
+

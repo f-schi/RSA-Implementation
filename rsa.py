@@ -1,4 +1,4 @@
-
+from lib import keygen
 from lib import encrypt
 from lib import decrypt
   
@@ -11,12 +11,14 @@ Enter 'encrypt' to encrypt plaintext. \n\
 Enter 'decrypt' to decrypt a cipher. \n\
 ")
         if prompt == 'keygen':
-            #keygen()
-            pass
+            keygen.keygen()
+            prompt = " "
         elif prompt == 'encrypt':
             encrypt.encrypt()
+            prompt = " "
         elif prompt == 'decrypt':
             decrypt.decrypt()
+            prompt = " "
         elif prompt == 'quit':
             exit()
         elif prompt == " ":
