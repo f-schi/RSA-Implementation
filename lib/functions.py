@@ -1,13 +1,30 @@
+import random
 
+def generate1024bitPrime():
+    num = 0
+    while rabinMillerTest() is False:
+        num = generate1024bitNumber()
+    return num
 
-
-
-def checkCoPrime():
+def rabinMillerTest():
     pass
+
+def generate1024bitNumber():
+    x = random.randrange(2 ** 1023, 2 ** 1024 - 1)
+    return x
+
+
+
+def coPrimeTest(a, b):
+    #check if values a and b are coprime
+    if euclideanAlgorithm(a, b) == 1:
+        return True
+    else:
+        return False
 
 
 def modularInverse(a,m):
-    # returns the modular inverse a^(-1) mod m
+    # returns the modular inverse of a^(-1) mod m
    gcd, s, t = extendedEuclideanAlgorithm(a,m)
    return t
 
